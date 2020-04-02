@@ -48,8 +48,6 @@ class FakultasController extends Controller
             'nama_fak' => 'required'
         ]);
 
-        $table = Fakultas::find($id_fak);
-
         $id_fak = $request['id_fak'];
         $update = Fakultas::where('id_fak', $id_fak)->first();
         $update->nama_fak = $request['nama_fak'];

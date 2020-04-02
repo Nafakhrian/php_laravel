@@ -110,7 +110,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-          <div class="nav-header">Data</div>
+          <div class="nav-header">Board</div>
           <li class="nav-item">
             <a href="{{ url('dashboard') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -120,6 +120,7 @@
             </a>
           </li>
 
+          <div class="nav-header">Data</div>
           <li class="nav-item">
             <a href="{{ url('fakultas') }}" class="nav-link">
               <i class="nav-icon fas fa-building"></i>

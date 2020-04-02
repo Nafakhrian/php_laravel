@@ -30,7 +30,7 @@
               <div class="card-header">
                 <div class="col-md-12">
                     <div class="col-md-12">
-                        <form class="form-inline" style="position: relative" action="#">
+                        <form class="form-inline" style="position: relative" action="{{ url('/ruangan') }}">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-primary" type="submit">
@@ -44,7 +44,7 @@
                             </div>
                             <div style="position: absolute; right: 10px; ">
                                 <a class="btn btn-success" href="#" style="color: #fff"><i class="fas fa-file-excel"></i>&nbsp; EXPORT</a>
-                                <a class="btn btn-primary" href="#" style="color: #fff"><i class="fas fa-plus-circle"></i>&nbsp; ADD</a>
+                                <a class="btn btn-primary" href="{{ url('/ruanganCreate') }}" style="color: #fff"><i class="fas fa-plus-circle"></i>&nbsp; ADD</a>
                             </div>
                         </form>
                     </div>

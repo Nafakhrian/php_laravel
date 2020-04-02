@@ -56,15 +56,15 @@
                 <table class="table table-bordered">
                     <thead>
                       <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">#</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                        @forelse($dataFakultas as $fakultas)
+                        @forelse($dataFakultas as $f => $fakultas)
                             <tr>
-                                <td>{{ $fakultas->id_fak }}</td>
+                                <td>{{ $dataFakultas->firstItem()+$f }}</td>
                                 <td>{{ $fakultas->nama_fak }}</td>
                                 <td>
                                     <a class="btn btn-info" name="btn-update" href="{{ url('/fakultasUpdate'. $fakultas->id_fak) }}"> <i class="fas fa-pen"></i></a>

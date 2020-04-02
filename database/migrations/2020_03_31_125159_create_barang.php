@@ -16,6 +16,7 @@ class CreateBarang extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->increments('id_bar');
             $table->string('nama_bar', 100);
+            $table->integer('jumlah_bar');
             $table->timestamps();
         });
     }

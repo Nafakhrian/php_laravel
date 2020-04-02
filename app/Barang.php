@@ -8,5 +8,5 @@ class Barang extends Model
 {
     public $table = 'barang';
     protected $primaryKey = 'id_bar';
-    protected $fillable = ['nama_bar'];
+    protected $fillable = ['nama_bar', 'jumlah_bar'];
 }

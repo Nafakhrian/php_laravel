@@ -30,21 +30,21 @@
               <div class="card-header">
                 <div class="col-md-12">
                     <div class="col-md-12">
-                        <form class="form-inline" style="position: relative" action="#">
+                        <form class="form-inline" method="GET" style="position: relative" action="{{ url('/jurusanSearch') }}">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" name="search_jur">
                                 <div class="input-group-append">
-                                    <a class="btn btn-danger" href="#" style="color: #fff;">SHOW ALL</a>
+                                    <a class="btn btn-danger" href="{{ route('jurusan.jurusan') }}" style="color: #fff;">SHOW ALL</a>
                                 </div>
                             </div>
                             <div style="position: absolute; right: 10px; ">
                                 <a class="btn btn-success" href="#" style="color: #fff"><i class="fas fa-file-excel"></i>&nbsp; EXPORT</a>
-                                <a class="btn btn-primary" href="#" style="color: #fff"><i class="fas fa-plus-circle"></i>&nbsp; ADD</a>
+                                <a class="btn btn-primary" href="{{ url('/jurusanCreate') }}" style="color: #fff"><i class="fas fa-plus-circle"></i>&nbsp; ADD</a>
                             </div>
                         </form>
                     </div>
@@ -56,16 +56,39 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">#</th>
                             <th scope="col">Fakultas</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse($dataJurusan as $j => $jurusan )
+                            <tr>
+                                <td>{{ $dataJurusan->firstItem()+$j }}</td>
+                                <td>
+                                    @foreach($dataFakultas as $fakultas)
+                                        @if($fakultas->id_fak == $jurusan->id_fak)
+                                            {{ $fakultas->nama_fak }}
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>{{ $jurusan->nama_jur }}</td>
+                                <td>
+                                    <a class="btn btn-info" name="btn-update" href="{{ url('/jurusanUpdate'. $jurusan->id_jur) }}"> <i class="fas fa-pen"></i></a>
+                                    <a class="btn btn-danger" name="btn-delete" href="{{ url('/jurusanDelete'. $jurusan->id_jur) }}" onclick="return confirm('Yakin ingin menghapus data Jurusan {{ $jurusan->nama_jur}}?')"> <i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
 
+                        @empty
+                            <tr>
+                                <td colspan="3"><center>Data kosong</center></td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
+                <br>
+                {{ $dataJurusan->links() }}
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
