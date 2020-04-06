@@ -3,30 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Barang;
+use App\Ruangan;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
 {
     public function index(Request $request){
         $dataBarang = Barang::when($request->search, function($query) use($request){
-            $query->where('nama_bar', 'LIKE', '%'.$request->search.'%');
-        })->paginate(5);
+            $query->where('nama_bar', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('nama_rua', 'LIKE', '%'.$request->search.'%');
+        })->join('ruangan', 'ruangan.id_rua', '=', 'barang.id_rua')
+            ->orderBy('id_bar', 'asc')->paginate(5);
         return view('barang.barang', compact('dataBarang'));
     }
 
     public function create(){
-        return view('barang.createBarang');
+        $dataRuangan = Ruangan::all();
+        return view('barang.createBarang', compact('dataRuangan'));
     }
 
     public function store(Request $request){
         $this->validate($request, [
+            'id_rua' => 'required',
             'nama_bar' => 'required',
-            'jumlah_bar' => 'required'
+            'total_bar' => 'required',
+            'rusak_bar' => 'required',
+            'created_by' => 'required',
+            'updated_by' => 'required',
         ]);
 
         Barang::create([
+            'id_rua' => $request->id_rua,
             'nama_bar' => $request->nama_bar,
-            'jumlah_bar' => $request->jumlah_bar
+            'total_bar' => $request->total_bar,
+            'rusak_bar' => $request->rusak_bar,
+            'created_by' => $request->created_by,
+            'updated_by' => $request->updated_by
         ]);
 
         return redirect('/barang');
@@ -40,24 +52,33 @@ class BarangController extends Controller
     }
 
     public function update($id_bar){
+        $dataRuangan = Ruangan::all();
         $dataBarang = Barang::all()->where('id_bar', '=', $id_bar)
                                     ->first();
-        return view('barang.updateBarang', compact('dataBarang'));
+        return view('barang.updateBarang', compact('dataBarang', 'dataRuangan'));
     }
 
     public function updateStore($id_bar, Request $request){
         $this->validate($request, [
+            'id_rua' => 'required',
             'nama_bar' => 'required',
-            'jumlah_bar' => 'required'
+            'total_bar' => 'required',
+            'rusak_bar' => 'required',
+            'created_by' => 'required',
+            'updated_by' => 'required',
         ]);
 
         $table = Barang::find($id_bar);
         $id_bar = $request['id_bar'];
         $update = Barang::where('id_bar', $id_bar)->first();
         $update->nama_bar = $request['nama_bar'];
-        $update->jumlah_bar = $request['jumlah_bar'];
+        $update->total_bar = $request['total_bar'];
+        $update->rusak_bar = $request['rusak_bar'];
+        $update->created_by = $request['created_by'];
+        $update->updated_by = $request['updated_by'];
         $update->update();
 
         return redirect('/barang');
     }
+
 }

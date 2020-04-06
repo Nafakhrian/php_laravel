@@ -20,7 +20,7 @@ class CreateJurusan extends Migration
             $table->timestamps();
 
             $table->foreign('id_fak')->references('id_fak')->on('fakultas')
-                    ->onDelete('restrict')
+                    ->onDelete('cascade')
                     ->onUpdate('cascade');
         });
     }

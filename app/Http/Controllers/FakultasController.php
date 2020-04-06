@@ -10,7 +10,7 @@ class FakultasController extends Controller
     public function index(Request $request){
         $dataFakultas = Fakultas::when($request->search, function($query) use($request){
             $query->where('nama_fak', 'LIKE', '%'.$request->search.'%');
-        })->paginate(5);
+        })->orderBy('id_fak', 'asc')->paginate(5);
         return view('admin.fakultas.fakultas', compact('dataFakultas'));
     }
 

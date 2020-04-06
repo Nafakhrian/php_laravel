@@ -9,9 +9,9 @@ class Ruangan extends Model
 {
     public $table = 'ruangan';
     protected $primaryKey = 'id_rua';
-    protected $fillable = ['nama_rua', 'id_fak'];
+    protected $fillable = ['nama_rua', 'id_jur'];
 
-    public function fakultas(){
-    	return $this->belongsTo('App\Fakultas', 'id_fak','id_fak');
+    public function jurusan(){
+    	return $this->belongsTo('App\Jurusan', 'id_jur');
     }
 }

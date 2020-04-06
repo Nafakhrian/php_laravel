@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBarang extends Migration
+class CreateUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateBarang extends Migration
      */
     public function up()
     {
-        Schema::create('barang', function (Blueprint $table) {
-            $table->increments('id_bar');
-            $table->string('nama_bar', 100);
-            $table->integer('jumlah_bar');
+        Schema::create('user', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 50);
+            $table->string('email', 50);
+            $table->string('password', 100);
+            $table->string('role' , 50)->default('admin');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateBarang extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('barang');
+        Schema::dropIfExists('user');
     }
 }

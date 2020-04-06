@@ -15,12 +15,12 @@ class CreateRuangan extends Migration
     {
         Schema::create('ruangan', function (Blueprint $table) {
             $table->increments('id_rua');
-            $table->integer('id_fak')->unsigned();
+            $table->integer('id_jur')->unsigned();
             $table->string('nama_rua', 100);
             $table->timestamps();
 
-            $table->foreign('id_fak')->references('id_fak')->on('fakultas')
-                    ->onDelete('restrict')
+            $table->foreign('id_jur')->references('id_jur')->on('jurusan')
+                    ->onDelete('cascade')
                     ->onUpdate('cascade');
         });
     }

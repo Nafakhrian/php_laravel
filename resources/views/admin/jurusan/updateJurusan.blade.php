@@ -48,7 +48,7 @@
                 @csrf
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="id_jur" id="id_jur" placeholder="Masukan Nama Fakultas" value="{{ $dataJurusan->id_jur }}" hidden>
+                            <input type="text" class="form-control" name="id_jur" id="id_jur" value="{{ $dataJurusan->id_jur }}" hidden>
                         </div>
                         <div class="form-group">
                             <label>Nama Fakultas</label>

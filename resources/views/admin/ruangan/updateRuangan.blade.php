@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Data Barang</h1>
+            <h1 class="m-0 text-dark">Data Ruangan</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -26,9 +26,9 @@
 
           <section class="col-lg-12 ">
             <!-- Custom tabs (Charts with tabs)-->
-            <div class="card card-danger">
+            <div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">Insert Data</h3>
+                <h3 class="card-title">Update Data</h3>
 
               </div><!-- /.card-header -->
 
@@ -44,37 +44,24 @@
                 </div>
                 @endif
 
-                <form method="post" action="{{ url('/barangStore') }}" autocomplete="off" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/ruanganUpdateStore/' . $dataRuangan->id_rua) }}" autocomplete="off" enctype="multipart/form-data">
                 @csrf
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Nama Ruangan</label>
-                            <select class="form-control" id="id_rua" name="id_rua">
-                                <option value="" hidden> -- Pilih Ruangan -- </option>
-                                @foreach($dataRuangan as $rua)
-                                    <option value="{{ $rua->id_rua }}">{{ $rua->nama_rua }}</option>
+                            <input type="text" class="form-control" name="id_rua" id="id_rua" value="{{ $dataRuangan->id_rua }}" hidden>
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Jurusan</label>
+                            <select class="form-control" id="id_jur" name="id_jur">
+                                <option value="" hidden>Select Fakultas</option>
+                                @foreach($dataJurusan as $jur)
+                                    <option value="{{ $jur->id_jur }}" {{ ($dataRuangan->id_jur == $jur->id_jur) ? 'selected' : ''}} >{{ $jur->nama_jur }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Nama Barang</label>
-                            <input type="text" class="form-control" name="nama_bar" id="nama_bar" placeholder="Masukan Nama Barang" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Total Barang</label>
-                            <input type="text" class="form-control" name="total_bar" id="total_bar" placeholder="Masukan Jumlah Barang" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Barang Rusak</label>
-                            <input type="text" class="form-control" name="rusak_bar" id="rusak_bar" placeholder="Masukan Jumlah Barang Rusak" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Created By</label>
-                            <input type="text" class="form-control" name="created_by" id="created_by" value="1">
-                        </div>
-                        <div class="form-group">
-                            <label>Updated By</label>
-                            <input type="text" class="form-control" name="updated_by" id="updated_by" value="1">
+                            <label>Nama Ruangan</label>
+                            <input type="text" class="form-control" name="nama_rua" id="nama_rua" placeholder="Masukan Nama Fakultas" value="{{ $dataRuangan->nama_rua }}" required>
                         </div>
                         <button type="submit" id="button1" class="btn btn-primary"><i class="fas fa-plus-circle"></i> INSERT</button>
                     </div>

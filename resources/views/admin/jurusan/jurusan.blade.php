@@ -30,14 +30,14 @@
               <div class="card-header">
                 <div class="col-md-12">
                     <div class="col-md-12">
-                        <form class="form-inline" method="GET" style="position: relative" action="{{ url('/jurusanSearch') }}">
+                        <form class="form-inline" method="GET"  action="{{ url('/jurusan') }}">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" name="search_jur">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" name="search">
                                 <div class="input-group-append">
                                     <a class="btn btn-danger" href="{{ route('jurusan.jurusan') }}" style="color: #fff;">SHOW ALL</a>
                                 </div>
@@ -57,8 +57,8 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Fakultas</th>
-                            <th scope="col">Nama</th>
+                            <th scope="col">Nama Fakultas</th>
+                            <th scope="col">Nama Jurusan</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -67,11 +67,7 @@
                             <tr>
                                 <td>{{ $dataJurusan->firstItem()+$j }}</td>
                                 <td>
-                                    @foreach($dataFakultas as $fakultas)
-                                        @if($fakultas->id_fak == $jurusan->id_fak)
-                                            {{ $fakultas->nama_fak }}
-                                        @endif
-                                    @endforeach
+                                    {{ $jurusan->fakultas->nama_fak }}
                                 </td>
                                 <td>{{ $jurusan->nama_jur }}</td>
                                 <td>
@@ -82,7 +78,7 @@
 
                         @empty
                             <tr>
-                                <td colspan="3"><center>Data kosong</center></td>
+                                <td colspan="4"><center>Data kosong</center></td>
                             </tr>
                         @endforelse
                     </tbody>

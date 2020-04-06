@@ -48,6 +48,15 @@
                 @csrf
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label>Nama Jurusan</label>
+                            <select class="form-control" id="id_jur" name="id_jur">
+                                <option value="" hidden> -- Pilih Jurusan -- </option>
+                                @foreach($dataJurusan as $jur)
+                                    <option value="{{ $jur->id_jur }}">{{ $jur->nama_jur }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Nama Ruangan</label>
                             <input type="text" class="form-control" name="nama_rua" id="nama_rua" placeholder="Masukan Nama Ruangan" required>
                         </div>

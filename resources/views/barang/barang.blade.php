@@ -56,27 +56,35 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Jumlah</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Nama Ruangan</th>
+                            <th scope="col">Nama Barang</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Rusak</th>
+                            <th scope="col">Created by</th>
+                            <th scope="col">Updated by</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($dataBarang as $barang)
+                        @forelse($dataBarang as $r => $barang )
                             <tr>
-                                <td>{{ $barang->id_bar }}</td>
+                                <td>{{ $dataBarang->firstItem()+$r }}</td>
+                                <td>{{ $barang->ruangan->nama_rua }}</td>
                                 <td>{{ $barang->nama_bar }}</td>
-                                <td>{{ $barang->jumlah_bar }}</td>
+                                <td>{{ $barang->total_bar }}</td>
+                                <td>{{ $barang->rusak_bar }}</td>
+                                <td>{{ $barang->user_c->name }}</td>
+                                <td>{{ $barang->user_u->name }}</td>
                                 <td>
                                     <a class="btn btn-info" name="btn-update" href="{{ url('/barangUpdate'. $barang->id_bar) }}"> <i class="fas fa-pen"></i></a>
-                                    <a class="btn btn-danger" name="btn-delete" href="{{ url('/barangDelete'. $barang->id_bar) }}" onclick="return confirm('Yakin ingin menghapus data barang {{ $barang->nama_fak}}?')"> <i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-danger" name="btn-delete" href="{{ url('/barangDelete'. $barang->id_bar) }}" onclick="return confirm('Yakin ingin menghapus data Barang {{ $barang->nama_bar}}?')"> <i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
 
                         @empty
                             <tr>
-                                <td colspan="3"><center>Data kosong</center></td>
+                                <td colspan="8"><center>Data kosong</center></td>
                             </tr>
                         @endforelse
                     </tbody>
