@@ -55,7 +55,7 @@
                             <select class="form-control" id="id_rua" name="id_rua">
                                 <option value="" hidden> -- Pilih Ruangan -- </option>
                                 @foreach($dataRuangan as $rua)
-                                    <option value="{{ $rua->id_rua }}" {{ ($dataBarang->id_rua == $rua->id_rua) ? 'selected' : ''}} >{{ $rua->nama_rua }}</option>
+                                    <option value="{{ $rua->id_rua }}" {{ ($dataBarang->id_rua == $rua->id_rua) ? 'selected' : ''}} >{{ $rua->jurusan->nama_jur .' - '. $rua->nama_rua }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -72,12 +72,10 @@
                             <input type="text" class="form-control" name="rusak_bar" id="rusak_bar" placeholder="Masukan Jumlah Barang Rusak" value="{{ $dataBarang->rusak_bar }}" required>
                         </div>
                         <div class="form-group">
-                            <label>Created By</label>
-                            <input type="text" class="form-control" name="created_by" id="created_by" value="{{ $dataBarang->created_by }}">
+                            <input type="text" class="form-control" name="created_by" id="created_by" value="{{ $dataBarang->created_by }}" hidden>
                         </div>
                         <div class="form-group">
-                            <label>Updated By</label>
-                            <input type="text" class="form-control" name="updated_by" id="updated_by" value="{{ $dataBarang->created_by }}">
+                            <input type="text" class="form-control" name="updated_by" id="updated_by" value="{{ auth()->user()->id }}" hidden>
                         </div>
                         <button type="submit" id="button1" class="btn btn-primary"><i class="fas fa-plus-circle"></i> INSERT</button>
                     </div>

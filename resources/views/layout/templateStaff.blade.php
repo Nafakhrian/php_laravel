@@ -79,7 +79,7 @@
 
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
               <a href="" class="dropdown-item">
-                <i class="fas fa-hashtag"></i> &nbsp;&nbsp; {{auth()->user()->role  }}
+                <i class="fas fa-hashtag"></i> &nbsp;&nbsp; {{ auth()->user()->role  }}
               </a>
               <div class="dropdown-divider"></div>
               <a href="{{ url('logout') }}" class="dropdown-item">
@@ -107,44 +107,11 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          <div class="nav-header">Board</div>
-          <li class="nav-item">
-            <a href="{{ url('dashboard') }}" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-          </li>
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
 
-          <div class="nav-header" style="margin-left: -8px">Data</div>
-          <li class="nav-item">
-            <a href="{{ url('fakultas') }}" class="nav-link">
-              <i class="nav-icon fas fa-building"></i>
-              <p>
-                Fakultas
-              </p>
-            </a>
-          </li>
 
-          <li class="nav-item">
-            <a href="{{ url('jurusan') }}" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Jurusan
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="{{ url('ruangan') }}" class="nav-link">
-              <i class="nav-icon fas fa-map-marker"></i>
-              <p>
-                Ruangan
-              </p>
-            </a>
-          </li>
-
+          <div class="nav-header">Data</div>
           <li class="nav-item">
             <a href="{{ url('barang') }}" class="nav-link">
               <i class="nav-icon fas fa-inbox"></i>

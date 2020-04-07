@@ -20,7 +20,7 @@ class JurusanController extends Controller
     }
 
     public function create(){
-        $dataFakultas = Fakultas::all();
+        $dataFakultas = Fakultas::all()->sortBy('nama_fak');
         return view('admin.jurusan.createJurusan', compact('dataFakultas'));
     }
 
@@ -48,7 +48,7 @@ class JurusanController extends Controller
     public function update($id_jur){
         $dataJurusan = Jurusan::all()->where('id_jur', '=', $id_jur)
                                     ->first();
-        $dataFakultas = Fakultas::all();
+        $dataFakultas = Fakultas::all()->sortBy('nama_fak');
         return view('admin.jurusan.updateJurusan', compact('dataJurusan', 'dataFakultas'));
     }
 

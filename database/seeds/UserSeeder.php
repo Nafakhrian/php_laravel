@@ -13,14 +13,16 @@ class UserSeeder extends Seeder
     public function run()
     {
         $listUser = ['admin', 'staff'];
-        $role = 1;
+        $listName = ['Admin', 'Naufal Fakhrian'];
+        $listRole = ['admin', 'staff'];
+        $role = 0;
 
         foreach ($listUser as $user) {
             User::create([
-                'name' => $user,
+                'name' => $listName[$role],
                 'email' => $user,
                 'password' => bcrypt($user),
-                'role' => $role++
+                'role' => $listRole[$role++]
             ]);
         }
     }

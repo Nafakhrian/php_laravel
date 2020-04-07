@@ -19,7 +19,7 @@ class RuanganController extends Controller
     }
 
     public function create(){
-        $dataJurusan = Jurusan::all();
+        $dataJurusan = Jurusan::all()->sortBy('id_jur');
         return view('admin.ruangan.createRuangan', compact('dataJurusan'));
     }
 
@@ -47,7 +47,7 @@ class RuanganController extends Controller
     public function update($id_rua){
         $dataRuangan = Ruangan::all()->where('id_rua', '=', $id_rua)
                         ->first();
-        $dataJurusan = Jurusan::all();
+        $dataJurusan = Jurusan::all()->sortBy('id_jur');
         return view('admin.ruangan.updateRuangan', compact('dataRuangan', 'dataJurusan'));
     }
 

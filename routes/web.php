@@ -13,40 +13,57 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/login', 'AuthController@login')->name('login');
+Route::post('/postLogin', 'AuthController@postLogin');
+Route::get('/register', 'AuthController@register');
+Route::post('/postRegister', 'AuthController@postRegister');
+Route::get('/logout', 'AuthController@logout');
+
+
+Route::group(['middleware' => ['auth','checkRole:admin']], function(){
+    Route::get('/', 'PublicController@index');
+    Route::get('/dashboard', 'PublicController@index');
+
+    //Fakultas
+    Route::get('/fakultas', ['as' => 'fakultas.fakultas', 'uses' => 'FakultasController@index']);
+    Route::get('/fakultasCreate', 'FakultasController@create');
+    Route::post('/fakultasStore', 'FakultasController@store');
+    Route::get('/fakultasDelete{id_fak}', 'FakultasController@delete');
+    Route::get('/fakultasUpdate{id_fak}', 'FakultasController@update');
+    Route::post('/fakultasUpdateStore/{id_fak}', 'FakultasController@updateStore');
+
+    //Jurusan
+    Route::get('/jurusan', ['as' => 'jurusan.jurusan', 'uses' => 'JurusanController@index']);
+    Route::get('/jurusanCreate', 'JurusanController@create');
+    Route::post('/jurusanStore', 'JurusanController@store');
+    Route::get('/jurusanDelete{id_jur}', 'JurusanController@delete');
+    Route::get('/jurusanUpdate{id_jur}', 'JurusanController@update');
+    Route::post('/jurusanUpdateStore/{id_jur}', 'JurusanController@updateStore');
+
+    //Ruangan
+    Route::get('/ruangan',['as' => 'ruangan.ruangan', 'uses' => 'RuanganController@index']);
+    Route::get('/ruanganCreate', 'RuanganController@create');
+    Route::post('/ruanganStore', 'RuanganController@store');
+    Route::get('/ruanganDelete{id_rua}', 'RuanganController@delete');
+    Route::get('/ruanganUpdate{id_rua}', 'RuanganController@update');
+    Route::post('/ruanganUpdateStore/{id_rua}', 'RuanganController@updateStore');
+
+
+    //barang
+    Route::get('/barang', ['as' => 'barang.barang', 'uses' => 'BarangController@index']);
+    Route::get('/barangCreate', 'BarangController@create');
+    Route::post('/barangStore', 'BarangController@store');
+    Route::get('/barangDelete{id_bar}', 'BarangController@delete');
+    Route::get('/barangUpdate{id_bar}', 'BarangController@update');
+    Route::post('/barangUpdateStore/{id_bar}', 'BarangController@updateStore');
 });
 
-Route::get('/dashboard', 'PublicController@index');
+Route::group(['middleware' => ['auth','checkRole:admin,staff']], function(){
 
-//Fakultas
-Route::get('/fakultas', ['as' => 'fakultas.fakultas', 'uses' => 'FakultasController@index']);
-Route::get('/fakultasCreate', 'FakultasController@create');
-Route::post('/fakultasStore', 'FakultasController@store');
-Route::get('/fakultasDelete{id_fak}', 'FakultasController@delete');
-Route::get('/fakultasUpdate{id_fak}', 'FakultasController@update');
-Route::post('/fakultasUpdateStore/{id_fak}', 'FakultasController@updateStore');
+    //barang
+    Route::get('/barangStaff', ['as' => 'staff.barangStaff', 'uses' => 'BarangController@indexStaff']);
+    Route::get('/barangStaffUpdate{id_bar}', 'BarangController@updateStaff');
+    Route::post('/barangStaffUpdateStore/{id_bar}', 'BarangController@updateStoreStaff');
 
-//Jurusan
-Route::get('/jurusan', ['as' => 'jurusan.jurusan', 'uses' => 'JurusanController@index']);
-Route::get('/jurusanCreate', 'JurusanController@create');
-Route::post('/jurusanStore', 'JurusanController@store');
-Route::get('/jurusanDelete{id_jur}', 'JurusanController@delete');
-Route::get('/jurusanUpdate{id_jur}', 'JurusanController@update');
-Route::post('/jurusanUpdateStore/{id_jur}', 'JurusanController@updateStore');
-
-//Ruangan
-Route::get('/ruangan',['as' => 'ruangan.ruangan', 'uses' => 'RuanganController@index']);
-Route::get('/ruanganCreate', 'RuanganController@create');
-Route::post('/ruanganStore', 'RuanganController@store');
-Route::get('/ruanganDelete{id_rua}', 'RuanganController@delete');
-Route::get('/ruanganUpdate{id_rua}', 'RuanganController@update');
-Route::post('/ruanganUpdateStore/{id_rua}', 'RuanganController@updateStore');
-
-//barang
-Route::get('/barang', ['as' => 'barang.barang', 'uses' => 'BarangController@index']);
-Route::get('/barangCreate', 'BarangController@create');
-Route::post('/barangStore', 'BarangController@store');
-Route::get('/barangDelete{id_bar}', 'BarangController@delete');
-Route::get('/barangUpdate{id_bar}', 'BarangController@update');
-Route::post('/barangUpdateStore/{id_bar}', 'BarangController@updateStore');
+});

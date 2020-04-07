@@ -52,7 +52,7 @@
                             <select class="form-control" id="id_jur" name="id_jur">
                                 <option value="" hidden> -- Pilih Jurusan -- </option>
                                 @foreach($dataJurusan as $jur)
-                                    <option value="{{ $jur->id_jur }}">{{ $jur->nama_jur }}</option>
+                                    <option value="{{ $jur->id_jur }}">{{ $jur->fakultas->nama_fak .' - '. $jur->nama_jur }}</option>
                                 @endforeach
                             </select>
                         </div>

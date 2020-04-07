@@ -55,7 +55,7 @@
                             <select class="form-control" id="id_jur" name="id_jur">
                                 <option value="" hidden>Select Fakultas</option>
                                 @foreach($dataJurusan as $jur)
-                                    <option value="{{ $jur->id_jur }}" {{ ($dataRuangan->id_jur == $jur->id_jur) ? 'selected' : ''}} >{{ $jur->nama_jur }}</option>
+                                    <option value="{{ $jur->id_jur }}" {{ ($dataRuangan->id_jur == $jur->id_jur) ? 'selected' : ''}} >{{ $jur->fakultas->nama_fak .' - '. $jur->nama_jur }}</option>
                                 @endforeach
                             </select>
                         </div>
