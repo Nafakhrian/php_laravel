@@ -22,23 +22,21 @@ Route::get('/logout', 'AuthController@logout');
 
 
 Route::group(['middleware' => ['auth','checkRole:admin']], function(){
-    Route::get('/', 'PublicController@index');
-    Route::get('/dashboard', 'PublicController@index');
 
     //Fakultas
     Route::get('/fakultas', ['as' => 'fakultas.fakultas', 'uses' => 'FakultasController@index']);
     Route::get('/fakultasCreate', 'FakultasController@create');
     Route::post('/fakultasStore', 'FakultasController@store');
-    Route::get('/fakultasDelete{id_fak}', 'FakultasController@delete');
-    Route::get('/fakultasUpdate{id_fak}', 'FakultasController@update');
+    Route::get('/fakultasDelete/{id_fak}', 'FakultasController@delete');
+    Route::get('/fakultasUpdate/{id_fak}', 'FakultasController@update');
     Route::post('/fakultasUpdateStore/{id_fak}', 'FakultasController@updateStore');
 
     //Jurusan
     Route::get('/jurusan', ['as' => 'jurusan.jurusan', 'uses' => 'JurusanController@index']);
     Route::get('/jurusanCreate', 'JurusanController@create');
     Route::post('/jurusanStore', 'JurusanController@store');
-    Route::get('/jurusanDelete{id_jur}', 'JurusanController@delete');
-    Route::get('/jurusanUpdate{id_jur}', 'JurusanController@update');
+    Route::get('/jurusanDelete/{id_jur}', 'JurusanController@delete');
+    Route::get('/jurusanUpdate/{id_jur}', 'JurusanController@update');
     Route::post('/jurusanUpdateStore/{id_jur}', 'JurusanController@updateStore');
 
     //Ruangan
@@ -50,20 +48,18 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function(){
     Route::post('/ruanganUpdateStore/{id_rua}', 'RuanganController@updateStore');
 
 
+});
+
+Route::group(['middleware' => ['auth','checkRole:admin,staff']], function(){
+    Route::get('/', 'PublicController@index');
+
+
     //barang
     Route::get('/barang', ['as' => 'barang.barang', 'uses' => 'BarangController@index']);
     Route::get('/barangCreate', 'BarangController@create');
     Route::post('/barangStore', 'BarangController@store');
-    Route::get('/barangDelete{id_bar}', 'BarangController@delete');
-    Route::get('/barangUpdate{id_bar}', 'BarangController@update');
+    Route::get('/barangDelete/{id_bar}', 'BarangController@delete');
+    Route::get('/barangUpdate/{id_bar}', 'BarangController@update');
     Route::post('/barangUpdateStore/{id_bar}', 'BarangController@updateStore');
-});
-
-Route::group(['middleware' => ['auth','checkRole:admin,staff']], function(){
-
-    //barang
-    Route::get('/barangStaff', ['as' => 'staff.barangStaff', 'uses' => 'BarangController@indexStaff']);
-    Route::get('/barangStaffUpdate{id_bar}', 'BarangController@updateStaff');
-    Route::post('/barangStaffUpdateStore/{id_bar}', 'BarangController@updateStoreStaff');
 
 });

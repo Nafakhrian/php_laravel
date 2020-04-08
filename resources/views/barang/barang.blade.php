@@ -42,10 +42,12 @@
                                     <a class="btn btn-danger" href="{{ route('barang.barang') }}" style="color: #fff;">SHOW ALL</a>
                                 </div>
                             </div>
+                            @if(auth()->user()->role == "admin")
                             <div style="position: absolute; right: 10px; ">
                                 <a class="btn btn-success" href="#" style="color: #fff"><i class="fas fa-file-excel"></i>&nbsp; EXPORT</a>
                                 <a class="btn btn-primary" href="{{ url('/barangCreate') }}" style="color: #fff"><i class="fas fa-plus-circle"></i>&nbsp; ADD</a>
                             </div>
+                            @endif
                         </form>
                     </div>
                 </div>
@@ -77,8 +79,10 @@
                                 <td>{{ $barang->user_c->name }}</td>
                                 <td>{{ $barang->user_u->name }}</td>
                                 <td>
-                                    <a class="btn btn-info" name="btn-update" href="{{ url('/barangUpdate'. $barang->id_bar) }}"> <i class="fas fa-pen"></i></a>
-                                    <a class="btn btn-danger" name="btn-delete" href="{{ url('/barangDelete'. $barang->id_bar) }}" onclick="return confirm('Yakin ingin menghapus data Barang {{ $barang->nama_bar}}?')"> <i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-info" name="btn-update" href="{{ url('/barangUpdate/'. $barang->id_bar) }}"> <i class="fas fa-pen"></i></a>
+                                    @if(auth()->user()->role == "admin")
+                                        <a class="btn btn-danger" name="btn-delete" href="{{ url('/barangDelete/'. $barang->id_bar) }}" onclick="return confirm('Yakin ingin menghapus data Barang {{ $barang->nama_bar}}?')"> <i class="fas fa-trash"></i></a>
+                                    @endif
                                 </td>
                             </tr>
 

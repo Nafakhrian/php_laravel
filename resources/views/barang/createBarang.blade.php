@@ -69,7 +69,7 @@
                             <input type="text" class="form-control" name="rusak_bar" id="rusak_bar" placeholder="Masukan Jumlah Barang Rusak" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="created_by" id="created_by" value="1" hidden>
+                            <input type="text" class="form-control" name="created_by" id="created_by" value="{{ auth()->user()->id  }}" hidden>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="updated_by" id="updated_by" value="{{ auth()->user()->id  }}" hidden>

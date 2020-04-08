@@ -71,8 +71,8 @@
                                 </td>
                                 <td>{{ $jurusan->nama_jur }}</td>
                                 <td>
-                                    <a class="btn btn-info" name="btn-update" href="{{ url('/jurusanUpdate'. $jurusan->id_jur) }}"> <i class="fas fa-pen"></i></a>
-                                    <a class="btn btn-danger" name="btn-delete" href="{{ url('/jurusanDelete'. $jurusan->id_jur) }}" onclick="return confirm('Yakin ingin menghapus data Jurusan {{ $jurusan->nama_jur}}?')"> <i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-info" name="btn-update" href="{{ url('/jurusanUpdate/'. $jurusan->id_jur) }}"> <i class="fas fa-pen"></i></a>
+                                    <a class="btn btn-danger" name="btn-delete" href="{{ url('/jurusanDelete/'. $jurusan->id_jur) }}" onclick="return confirm('Yakin ingin menghapus data Jurusan {{ $jurusan->nama_jur}}?')"> <i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
 

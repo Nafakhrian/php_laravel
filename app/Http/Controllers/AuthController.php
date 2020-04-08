@@ -28,11 +28,8 @@ class AuthController extends Controller
     public function postLogin(Request $request){
     	if(Auth::attempt($request->only('email','password'))){
 
-            if( auth()->user()->role == 'staff' ){
-                return redirect('/barangStaff');
-            } elseif( auth()->user()->role == 'admin' ){
-                return redirect('/');
-            }
+            return redirect('/');
+
         }
     	// Message salah
     	return redirect('/login')->with('errors', 'Username atau Password anda Salah!');
