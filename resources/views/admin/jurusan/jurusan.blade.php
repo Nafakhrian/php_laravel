@@ -43,8 +43,7 @@
                                 </div>
                             </div>
                             <div style="position: absolute; right: 10px; ">
-                                <a class="btn btn-success" href="#" style="color: #fff"><i class="fas fa-file-excel"></i>&nbsp; EXPORT</a>
-                                <a class="btn btn-primary" href="{{ url('/jurusanCreate') }}" style="color: #fff"><i class="fas fa-plus-circle"></i>&nbsp; ADD</a>
+                                <a class="btn btn-primary" href="{{ url('/jurusan_create') }}" style="color: #fff"><i class="fas fa-plus-circle"></i>&nbsp; ADD</a>
                             </div>
                         </form>
                     </div>
@@ -71,8 +70,8 @@
                                 </td>
                                 <td>{{ $jurusan->nama_jur }}</td>
                                 <td>
-                                    <a class="btn btn-info" name="btn-update" href="{{ url('/jurusanUpdate/'. $jurusan->id_jur) }}"> <i class="fas fa-pen"></i></a>
-                                    <a class="btn btn-danger" name="btn-delete" href="{{ url('/jurusanDelete/'. $jurusan->id_jur) }}" onclick="return confirm('Yakin ingin menghapus data Jurusan {{ $jurusan->nama_jur}}?')"> <i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-info" name="btn-update" href="{{ url('/jurusan_update/'. $jurusan->id_jur) }}"> <i class="fas fa-pen"></i></a>
+                                    <a class="btn btn-danger" name="btn-delete" href="{{ url('/jurusan_delete/'. $jurusan->id_jur) }}" onclick="return confirm('Yakin ingin menghapus data Jurusan {{ $jurusan->nama_jur}}?')"> <i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
 

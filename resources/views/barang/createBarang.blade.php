@@ -44,7 +44,7 @@
                 </div>
                 @endif
 
-                <form method="post" action="{{ url('/barangStore') }}" autocomplete="off" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/barang_store') }}" autocomplete="off" enctype="multipart/form-data">
                 @csrf
                     <div class="col-md-6">
                         <div class="form-group">
@@ -62,11 +62,11 @@
                         </div>
                         <div class="form-group">
                             <label>Total Barang</label>
-                            <input type="text" class="form-control" name="total_bar" id="total_bar" placeholder="Masukan Jumlah Barang" required>
+                            <input type="number" class="form-control" name="total_bar" id="total_bar" placeholder="Masukan Jumlah Barang" required>
                         </div>
                         <div class="form-group">
                             <label>Barang Rusak</label>
-                            <input type="text" class="form-control" name="rusak_bar" id="rusak_bar" placeholder="Masukan Jumlah Barang Rusak" required>
+                            <input type="number" class="form-control" name="rusak_bar" id="rusak_bar" placeholder="Masukan Jumlah Barang Rusak" required>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="created_by" id="created_by" value="{{ auth()->user()->id  }}" hidden>

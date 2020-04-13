@@ -43,8 +43,7 @@
                                 </span>
                               </div>
                             <div style="position: absolute; right: 10px; ">
-                                <a class="btn btn-success" href="#" style="color: #fff"><i class="fas fa-file-excel"></i>&nbsp; EXPORT</a>
-                                <a class="btn btn-primary" href="{{ url('/fakultasCreate') }}" style="color: #fff"><i class="fas fa-plus-circle"></i>&nbsp; ADD</a>
+                                <a class="btn btn-primary" href="{{ url('/fakultas_create') }}" style="color: #fff"><i class="fas fa-plus-circle"></i>&nbsp; ADD</a>
                             </div>
                         </form>
                     </div>
@@ -67,8 +66,8 @@
                                 <td>{{ $dataFakultas->firstItem()+$f }}</td>
                                 <td>{{ $fakultas->nama_fak }}</td>
                                 <td>
-                                    <a class="btn btn-info" name="btn-update" href="{{ url('/fakultasUpdate/'. $fakultas->id_fak) }}"> <i class="fas fa-pen"></i></a>
-                                    <a class="btn btn-danger" name="btn-delete" href="{{ url('/fakultasDelete/'. $fakultas->id_fak) }}" onclick="return confirm('Yakin ingin menghapus data Fakultas {{ $fakultas->nama_fak}}?')"> <i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-info" name="btn-update" href="{{ url('/fakultas_update/'. $fakultas->id_fak) }}"> <i class="fas fa-pen"></i></a>
+                                    <a class="btn btn-danger" name="btn-delete" href="{{ url('/fakultas_delete/'. $fakultas->id_fak) }}" onclick="return confirm('Yakin ingin menghapus data Fakultas {{ $fakultas->nama_fak}}?')"> <i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
 

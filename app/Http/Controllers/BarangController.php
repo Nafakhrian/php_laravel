@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Barang;
 use App\Ruangan;
+use App\Exports\BarangExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -80,6 +82,10 @@ class BarangController extends Controller
         $update->update();
 
         return redirect('/barang');
+    }
+
+    public function export(Request $request){
+        return Excel::download(new BarangExport, 'Barang_'.date("d-M-Y").'.xlsx');
     }
 
 }
