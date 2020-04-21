@@ -72,6 +72,12 @@
                             <input type="number" class="form-control" name="rusak_bar" id="rusak_bar" placeholder="Masukan Jumlah Barang Rusak" value="{{ $dataBarang->rusak_bar }}" required>
                         </div>
                         <div class="form-group">
+                            <label>Foto</label><br>
+                            <img src="{{ url('img/'.$dataBarang->foto) }}" alt="{{ $dataBarang->foto }}" width="300px" class="figure-img img-fluid rounded"/>
+                            <figcaption class="figure-caption">{{ $dataBarang->foto }}</figcaption><br>
+                            <input type="file" name="foto" accept=".jpg, .png, .jpeg">
+                        </div><br>
+                        <div class="form-group">
                             <input type="text" class="form-control" name="created_by" id="created_by" value="{{ $dataBarang->created_by }}" hidden>
                         </div>
                         <div class="form-group">

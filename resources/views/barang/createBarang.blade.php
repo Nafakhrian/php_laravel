@@ -69,11 +69,15 @@
                             <input type="number" class="form-control" name="rusak_bar" id="rusak_bar" placeholder="Masukan Jumlah Barang Rusak" required>
                         </div>
                         <div class="form-group">
+                            <label>Foto</label><br>
+                            <input type="file" name="foto" id="foto" accept=".jpg, .png, .jpeg">
+                        </div>
+                        <div class="form-group">
                             <input type="text" class="form-control" name="created_by" id="created_by" value="{{ auth()->user()->id  }}" hidden>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="updated_by" id="updated_by" value="{{ auth()->user()->id  }}" hidden>
-                        </div>
+                        </div><br>
                         <button type="submit" id="button1" class="btn btn-primary"><i class="fas fa-plus-circle"></i> INSERT</button>
                     </div>
 

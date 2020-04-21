@@ -7,6 +7,7 @@ use App\Ruangan;
 use App\Exports\BarangExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BarangController extends Controller
 {
@@ -31,15 +32,21 @@ class BarangController extends Controller
             'nama_bar' => 'required',
             'total_bar' => 'required',
             'rusak_bar' => 'required',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:4096',
             'created_by' => 'required',
             'updated_by' => 'required',
         ]);
+
+        $file = $request->file('foto');
+		$image = 'ruang-' . $request->id_rua  . '_' . $request->nama_bar . '.' . $file->getClientOriginalExtension();
+		$file->move(public_path("img "), $image);
 
         Barang::create([
             'id_rua' => $request->id_rua,
             'nama_bar' => $request->nama_bar,
             'total_bar' => $request->total_bar,
             'rusak_bar' => $request->rusak_bar,
+            'foto' => $insert['foto'] = "$image",
             'created_by' => $request->created_by,
             'updated_by' => $request->updated_by
         ]);
@@ -67,19 +74,33 @@ class BarangController extends Controller
             'nama_bar' => 'required',
             'total_bar' => 'required',
             'rusak_bar' => 'required',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:4096',
             'created_by' => 'required',
             'updated_by' => 'required',
         ]);
 
         $table = Barang::find($id_bar);
-        $id_bar = $request['id_bar'];
-        $update = Barang::where('id_bar', $id_bar)->first();
-        $update->nama_bar = $request['nama_bar'];
-        $update->total_bar = $request['total_bar'];
-        $update->rusak_bar = $request['rusak_bar'];
-        $update->created_by = $request['created_by'];
-        $update->updated_by = $request['updated_by'];
-        $update->update();
+        if ($file = $request->file('foto')) {
+			$usedImage = public_path("img/{ $table->foto }");
+
+			if (File::exists($usedImage)) {
+				unlink($usedImage);
+            }
+
+            $destPath = 'img/';
+		    $image = 'ruang-' . $request->id_rua  . '_' . $request->nama_bar . '.' . $file->getClientOriginalExtension();
+		    $file->move($destPath, $image);
+
+            $id_bar = $request['id_bar'];
+            $update = Barang::where('id_bar', $id_bar)->first();
+            $update->nama_bar = $request['nama_bar'];
+            $update->total_bar = $request['total_bar'];
+            $update->rusak_bar = $request['rusak_bar'];
+            $update->foto = $insert['foto'] = "$image";
+            $update->created_by = $request['created_by'];
+            $update->updated_by = $request['updated_by'];
+            $update->update();
+        }
 
         return redirect('/barang');
     }

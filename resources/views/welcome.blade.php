@@ -212,13 +212,13 @@
                     </span>
                     <!-- checkbox -->
                     <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo1" id="todoCheck1">
+                      <input type="checkbox" value="" name="todo1" id="todoCheck1" checked>
                       <label for="todoCheck1"></label>
                     </div>
                     <!-- todo text -->
                     <span class="text">Make export barang</span>
                     <!-- Emphasis label -->
-                    <small class="badge badge-success"> Soon </small>
+                    <small class="badge badge-danger"> 13 Apr </small>
                   </li>
 
                 </ul>
