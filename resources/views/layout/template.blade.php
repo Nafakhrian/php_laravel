@@ -165,6 +165,15 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="{{ url('sendemail') }}" class="nav-link">
+              <i class="nav-icon fas fa-envelope"></i>
+              <p>
+                Send Email
+              </p>
+            </a>
+          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

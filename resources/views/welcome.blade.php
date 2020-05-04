@@ -16,6 +16,12 @@
     </div>
     <!-- /.content-header -->
 
+    @if (session('result'))
+        <script>
+            window.alert("Email Terkirim Gan!");
+        </script>
+    @endif
+
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -219,6 +225,22 @@
                     <span class="text">Make export barang</span>
                     <!-- Emphasis label -->
                     <small class="badge badge-danger"> 13 Apr </small>
+                  </li>
+
+                  <li>
+                    <!-- drag handle -->
+                    <span class="handle">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                    <!-- checkbox -->
+                    <div  class="icheck-primary d-inline ml-2">
+                      <input type="checkbox" value="" name="todo1" id="todoCheck1" checked>
+                      <label for="todoCheck1"></label>
+                    </div>
+                    <!-- todo text -->
+                    <span class="text">Make validate barang & insert foto barang</span>
+                    <!-- Emphasis label -->
+                    <small class="badge badge-danger"> 21 Apr </small>
                   </li>
 
                 </ul>

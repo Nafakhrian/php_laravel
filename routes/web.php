@@ -20,6 +20,8 @@ Route::get('/register', 'AuthController@register');
 Route::post('/postRegister', 'AuthController@postRegister');
 Route::get('/logout', 'AuthController@logout');
 
+//Email
+Route::get('/sendemail', 'EmailController@send');
 
 Route::group(['middleware' => ['auth','checkRole:admin']], function(){
 
@@ -52,7 +54,6 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function(){
 
 Route::group(['middleware' => ['auth','checkRole:admin,staff']], function(){
     Route::get('/', 'PublicController@index');
-
 
     //barang
     Route::get('/barang', ['as' => 'barang.barang', 'uses' => 'BarangController@index']);
