@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Fakultas;
+use App\Imports\FakultasImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FakultasController extends Controller
 {
@@ -52,6 +54,20 @@ class FakultasController extends Controller
         $update = Fakultas::where('id_fak', $id_fak)->first();
         $update->nama_fak = $request['nama_fak'];
         $update->update();
+
+        return redirect('/fakultas');
+    }
+
+    public function import(Request $request){
+        $this->validate($request, [
+            'excel' => 'required'
+        ]);
+
+        $file = $request->file('excel');
+        $filename = rand(100, 999)."-fakultas.".$file->getClientOriginalExtension();
+        $file->move('excel', $filename);
+
+        Excel::import(new FakultasImport, public_path('/excel/').$filename);
 
         return redirect('/fakultas');
     }

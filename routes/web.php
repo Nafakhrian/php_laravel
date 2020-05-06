@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function(){
     Route::get('/fakultas_delete/{id_fak}', 'FakultasController@delete');
     Route::get('/fakultas_update/{id_fak}', 'FakultasController@update');
     Route::post('/fakultas_update_store/{id_fak}', 'FakultasController@updateStore');
+    Route::post('/fakultas_import', 'FakultasController@import');
 
     //Jurusan
     Route::get('/jurusan', ['as' => 'jurusan.jurusan', 'uses' => 'JurusanController@index']);
